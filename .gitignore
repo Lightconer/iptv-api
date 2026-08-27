@@ -5,3 +5,5 @@ updates/multicast/multicast_region_result.json
 .venv
 __pycache__/
 *.pyc
+# runtime log (regenerated every run), keep out of git
+output/log/

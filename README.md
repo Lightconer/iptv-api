@@ -164,8 +164,10 @@ https://lightconer.github.io/iptv-api/result.m3u
 
 ### 酒店源 & 组播源
 
-- 默认启用（`open_hotel = True`、`open_multicast = True`），使用内置缓存数据（`updates/hotel/cache.pkl`、`updates/multicast/cache.pkl` 及 `config/rtp/` 本地组播数据），更新快、结果稳定，卫视等频道会自动获得额外的酒店源与组播源接口
-- 如需实时联网扫描更多源，将 `config/config.ini` 中 `open_request` 改为 `True`（默认 `False`）。注意：实时扫描依赖 foodieguide.com（国内服务），在 GitHub Actions 上会显著拉长更新时间，建议仅在本地运行或自建部署时开启
+- **酒店源**：默认开启（`open_hotel = True`），使用内置缓存（`updates/hotel/cache.pkl`，约 600 条 HTTP 源），更新快、结果稳定，会为频道补充酒店 IPTV 接口
+- **组播源**：CI 自动更新中默认关闭（`open_multicast = False`）。原因：组播缓存约 5 万条 HTTP 单播网关地址，在 GitHub Actions（海外服务器）上测速会全部超时（更新拉长至 30 分钟以上）且这些源会被过滤掉，只在**国内本地网络**运行时才有实际价值
+- 在本地运行或自建服务器时，将 `config/config.ini` 中 `open_multicast` 改为 `True` 即可启用组播源（结合 `config/rtp/` 本地组播数据与 `updates/multicast/cache.pkl` 缓存）
+- 如需实时联网扫描更多酒店/组播源，将 `open_request` 改为 `True`（默认 `False`）。注意：实时扫描依赖 foodieguide.com（国内服务），在 GitHub Actions 上会显著拉长更新时间，建议仅在本地运行或自建部署时开启
 
 ### RTMP 推流（本地）
 
@@ -190,7 +192,7 @@ https://lightconer.github.io/iptv-api/result.m3u
 | open_hotel_fofa        | 开启 FOFA、ZoomEye 酒店源工作模式                                                                                                                                               | False             |
 | open_local             | 开启本地源功能，将使用模板文件与本地源文件中的数据                                                                                                                                             | True              |
 | open_m3u_result        | 开启转换生成 m3u 文件类型结果链接，支持显示频道图标                                                                                                                                          | True              |
-| open_multicast         | 开启组播源功能，关闭后所有组播源工作模式都将关闭（本仓库当前已开启）                                                                                                                                              | True              |
+| open_multicast         | 开启组播源功能，关闭后所有组播源工作模式都将关闭（CI 默认关闭；国内本地网络运行时可开启，详见“源类型说明”）                                                                                                                            | False             |
 | open_multicast_foodie  | 开启 Foodie 组播源工作模式                                                                                                                                                     | True              |
 | open_multicast_fofa    | 开启 FOFA 组播源工作模式                                                                                                                                                       | False             |
 | open_online_search     | 开启关键字搜索源功能                                                                                                                                                            | False             |

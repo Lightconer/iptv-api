@@ -160,6 +160,22 @@ https://lightconer.github.io/iptv-api/result.m3u
 2. 打开完美解码，**「文件 → 打开文件」** 选择该文件，或将文件**直接拖拽**到播放窗口
 3. 双击左侧频道即可观看
 
+## 源类型说明（本仓库已启用）
+
+### 酒店源 & 组播源
+
+- 默认启用（`open_hotel = True`、`open_multicast = True`），使用内置缓存数据（`updates/hotel/cache.pkl`、`updates/multicast/cache.pkl` 及 `config/rtp/` 本地组播数据），更新快、结果稳定，卫视等频道会自动获得额外的酒店源与组播源接口
+- 如需实时联网扫描更多源，将 `config/config.ini` 中 `open_request` 改为 `True`（默认 `False`）。注意：实时扫描依赖 foodieguide.com（国内服务），在 GitHub Actions 上会显著拉长更新时间，建议仅在本地运行或自建部署时开启
+
+### RTMP 推流（本地）
+
+- 已启用（`open_rtmp = True`），Windows 已内置 RTMP 服务器 `utils/nginx-rtmp-win32`（监听 1935 推流 / 8080 HLS）
+- 使用前置：本机安装 FFmpeg 并加入 PATH；将视频文件放入 `config/live`（RTMP）或 `config/hls`（HLS）
+- 更新完成后，本地服务提供：
+  - RTMP 播放：`rtmp://localhost:1935/live/<频道名>`（live）/ `rtmp://localhost:1935/hls/<频道名>`（hls）
+  - HLS 播放（推荐，播放器兼容性好）：`http://localhost:8080/hls/<频道名>.m3u8`
+  - 生成的推流结果文件位于 `output/live.m3u`、`output/hls.m3u`
+
 ## 配置
 
 | 配置项                    | 描述                                                                                                                                                                    | 默认值               |
@@ -169,17 +185,17 @@ https://lightconer.github.io/iptv-api/result.m3u
 | open_empty_category    | 开启无结果频道分类，自动归类至底部                                                                                                                                                     | False             |
 | open_filter_resolution | 开启分辨率过滤，低于最小分辨率（min_resolution）的接口将会被过滤，GUI用户需要手动安装FFmpeg，程序会自动调用FFmpeg获取接口分辨率，推荐开启，虽然会增加测速阶段耗时，但能更有效地区分是否可播放的接口                                                      | True              |
 | open_filter_speed      | 开启速率过滤，低于最小速率（min_speed）的接口将会被过滤                                                                                                                                      | True              |
-| open_hotel             | 开启酒店源功能，关闭后所有酒店源工作模式都将关闭                                                                                                                                              | False             |
+| open_hotel             | 开启酒店源功能，关闭后所有酒店源工作模式都将关闭（本仓库当前已开启）                                                                                                                                              | True              |
 | open_hotel_foodie      | 开启 Foodie 酒店源工作模式                                                                                                                                                     | True              |
 | open_hotel_fofa        | 开启 FOFA、ZoomEye 酒店源工作模式                                                                                                                                               | False             |
 | open_local             | 开启本地源功能，将使用模板文件与本地源文件中的数据                                                                                                                                             | True              |
 | open_m3u_result        | 开启转换生成 m3u 文件类型结果链接，支持显示频道图标                                                                                                                                          | True              |
-| open_multicast         | 开启组播源功能，关闭后所有组播源工作模式都将关闭                                                                                                                                              | False             |
+| open_multicast         | 开启组播源功能，关闭后所有组播源工作模式都将关闭（本仓库当前已开启）                                                                                                                                              | True              |
 | open_multicast_foodie  | 开启 Foodie 组播源工作模式                                                                                                                                                     | True              |
 | open_multicast_fofa    | 开启 FOFA 组播源工作模式                                                                                                                                                       | False             |
 | open_online_search     | 开启关键字搜索源功能                                                                                                                                                            | False             |
 | open_request           | 开启查询请求，数据来源于网络（仅针对酒店源与组播源）                                                                                                                                            | False             |
-| open_rtmp              | 开启RTMP推流功能，需要安装FFmpeg，利用本地带宽提升接口播放体验                                                                                                                                  | False             |
+| open_rtmp              | 开启RTMP推流功能，需要安装FFmpeg，利用本地带宽提升接口播放体验（本仓库当前已开启）                                                                                                                                  | True              |
 | open_service           | 开启页面服务，用于控制是否启动结果页面服务；如果使用青龙等平台部署，有专门设定的定时任务，需要更新完成后停止运行，可以关闭该功能                                                                                                      | True              |
 | open_speed_test        | 开启测速功能，获取响应时间、速率、分辨率                                                                                                                                                  | True              |
 | open_subscribe         | 开启订阅源功能                                                                                                                                                               | False             |

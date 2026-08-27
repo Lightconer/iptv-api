@@ -11,7 +11,6 @@ from logging import INFO
 from bs4 import NavigableString
 
 import utils.constants as constants
-from updates.epg.tools import write_to_xml, compress_to_gz
 from utils.alias import Alias
 from utils.config import config
 from utils.db import get_db_connection, return_db_connection
@@ -919,6 +918,8 @@ def write_channel_to_file(data, epg=None, ipv6=False, first_channel_name=None):
         for dir_name in dir_list:
             os.makedirs(dir_name, exist_ok=True)
         if epg:
+            # 延迟导入以避免循环依赖（updates.epg.request 会反向导入 utils.channel）
+            from updates.epg.tools import write_to_xml, compress_to_gz
             write_to_xml(epg, constants.epg_result_path)
             compress_to_gz(constants.epg_result_path, constants.epg_gz_result_path)
         open_empty_category = config.open_empty_category

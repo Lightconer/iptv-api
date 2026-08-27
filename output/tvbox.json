@@ -1,0 +1,20 @@
+{
+  "spider": "",
+  "wallpaper": "",
+  "lives": [
+    {
+      "group": "直播",
+      "name": "IPTV-API 直播 (m3u·含台标/EPG)",
+      "logo": "https://lightconer.github.io/iptv-api/logo.png",
+      "url": "https://lightconer.github.io/iptv-api/result.m3u"
+    },
+    {
+      "group": "直播",
+      "name": "IPTV-API 直播 (txt)",
+      "logo": "https://lightconer.github.io/iptv-api/logo.png",
+      "url": "https://lightconer.github.io/iptv-api/result.txt"
+    }
+  ],
+  "parses": [],
+  "flags": []
+}

@@ -31,6 +31,7 @@
 
 - [✅ 特点](#特点)
 - [🔗 最新结果](#最新结果)
+- [📺 客户端一键导入](#客户端一键导入)
 - [⚙️ 配置参数](#配置)
 - [🚀 快速上手](#快速上手)
     - [工作流](#工作流)
@@ -120,6 +121,44 @@ https://gh-proxy.com/https://raw.githubusercontent.com/Lightconer/iptv-api/maste
 ```bash
 https://raw.githubusercontent.com/Lightconer/iptv-api/master/source.json
 ```
+
+## 📺 客户端一键导入
+
+> 以下地址均由 GitHub Actions 自动更新并同步到 GitHub Pages（面向大陆网络优化），可直接复制使用
+
+### TVBox / 影视仓
+
+在影视仓 / TVBox 的 **「设置 → 配置地址」** 中粘贴下方接口地址，点确定后即可直接导入使用（含直播源、台标、EPG）：
+
+```bash
+https://lightconer.github.io/iptv-api/tvbox.json
+```
+
+也可以不加载接口，直接在 **「直播 → 自定义直播源」** 中添加单个直播源：
+
+```bash
+# m3u 格式（含台标/EPG，推荐）
+https://lightconer.github.io/iptv-api/result.m3u
+
+# txt 格式（TVBox 原生分类格式）
+https://lightconer.github.io/iptv-api/result.txt
+```
+
+### 完美解码（Windows）
+
+**方式一：直接打开网络地址**
+1. 打开完美解码，点击界面左上角的 **「▾」箭头菜单**
+2. 选择 **「打开」→「打开 URL / 打开网络串流」**
+3. 粘贴下方地址，回车后即可加载全部频道，双击左侧播放列表切换观看：
+
+```bash
+https://lightconer.github.io/iptv-api/result.m3u
+```
+
+**方式二：本地 m3u 文件播放**
+1. 浏览器访问上面的 m3u 地址，右键 **「另存为」** 保存为 `result.m3u`
+2. 打开完美解码，**「文件 → 打开文件」** 选择该文件，或将文件**直接拖拽**到播放窗口
+3. 双击左侧频道即可观看
 
 ## 配置
 

@@ -85,32 +85,40 @@
 ## 最新结果
 
 > [!IMPORTANT]\
-> 以下地址国内可能无法稳定访问，推荐在前拼接代理地址使用，公众号可回复`cdn`获取
+> 1. GitHub Pages 地址（`lightconer.github.io/iptv-api/`）面向大陆网络优化，推荐直接使用
+> 2. Raw 直链在部分网络环境无法稳定访问，可在链接前拼接 CDN 加速前缀，如 `https://gh-proxy.com/`
 
 ### 直播源
 
-- 默认
+- 默认（GitHub Pages，大陆可访问）
 
 ```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
+https://lightconer.github.io/iptv-api/result.m3u
 ```
 
 - IPv6
 
 ```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv6/result.m3u
+https://lightconer.github.io/iptv-api/ipv6/result.m3u
 ```
 
 - IPv4
 
 ```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u
+https://lightconer.github.io/iptv-api/ipv4/result.m3u
+```
+
+- Raw 直链（需加速前缀时拼接）
+
+```bash
+https://raw.githubusercontent.com/Lightconer/iptv-api/master/output/result.m3u
+https://gh-proxy.com/https://raw.githubusercontent.com/Lightconer/iptv-api/master/output/result.m3u
 ```
 
 ### 点播源
 
 ```bash
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
+https://raw.githubusercontent.com/Lightconer/iptv-api/master/source.json
 ```
 
 ## 配置
